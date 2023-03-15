@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:MyDay2._0.ViewModels"
              x:DataType="viewmodel:MainPageViewModel"
-             x:Class="MyDay2._0.MainPage">
+             x:Class="MyDay2._0.MainPage"
+             Title="Logga in">
     <ContentPage.Resources>
         <Style x:Key="scrollviewStyle"
                TargetType="ScrollView">
@@ -11,7 +12,7 @@
         </Style>
 
         <Style x:Key="verticalstacklayoutStyle"
-               TargetType="VerticalStackLayout">
+               TargetType="StackLayout">
 
         </Style>
 
@@ -39,14 +40,17 @@
 
     </ContentPage.Resources>
 
-
     <ScrollView
         Style="{StaticResource scrollviewStyle}">
-        <VerticalStackLayout >
-
+        <StackLayout
+            Style="{StaticResource verticalstacklayoutStyle}"
+            Spacing="10"
+            Padding="20">
             <Image
                 Source="mindaglogo.png"
-                WidthRequest="200"/>
+                WidthRequest="200"
+                HorizontalOptions="Center" />
+
             <Entry
                 x:Name="name"
                 Placeholder="Användarnamn"
@@ -69,7 +73,7 @@
                 Clicked="OnClickedSignUp"
                 Style="{StaticResource buttonStyle}"/>
 
-        </VerticalStackLayout>
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>

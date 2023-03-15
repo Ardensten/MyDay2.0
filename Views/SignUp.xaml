@@ -12,8 +12,7 @@
         </Style>
 
         <Style x:Key="verticalstacklayoutStyle"
-               TargetType="VerticalStackLayout">
-  
+               TargetType="StackLayout">
         </Style>
 
         <Style x:Key="entryStyle"
@@ -42,7 +41,8 @@
 
     <ScrollView
         Style="{StaticResource scrollviewStyle}">
-        <VerticalStackLayout>
+        <StackLayout
+            Style="{StaticResource verticalstacklayoutStyle}">
 
             <Image
                 Source="mindaglogo.png"
@@ -71,6 +71,6 @@
                 HorizontalOptions="Center"
                 Command="{Binding AddUserCommand}"
                 Style="{StaticResource buttonStyle}" />
-        </VerticalStackLayout>
+        </StackLayout>
     </ScrollView>
 </ContentPage>

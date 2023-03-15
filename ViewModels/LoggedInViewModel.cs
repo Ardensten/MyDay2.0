@@ -67,15 +67,19 @@ namespace MyDay2._0.ViewModels
             string APIKey = "d880f634a9c683c787a8ac74425fb095";
             string city = "nykoping";
 
-            using (WebClient web = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
                 string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=se", city, APIKey);
-                var json = web.DownloadString(url);
-                WeatherInfo.Root Info = JsonConvert.DeserializeObject<WeatherInfo.Root>(json);
-                WeatherIcon = "https://openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
-                Temp = Info.main.temp;
-                FeelsLikeTemp = Info.main.feels_like;
-                WeatherDescription = Info.weather[0].description;
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = response.Content.ReadAsStringAsync().Result;
+                    WeatherInfo.Root Info = JsonConvert.DeserializeObject<WeatherInfo.Root>(json);
+                    WeatherIcon = "https://openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
+                    Temp = Info.main.temp;
+                    FeelsLikeTemp = Info.main.feels_like;
+                    WeatherDescription = Info.weather[0].description;
+                }
             }
         }
 

@@ -19,7 +19,7 @@ public partial class RoutinePage : ContentPage
         base.OnAppearing();
         if (!pageStarted)
         {
-            Task t = (BindingContext as RoutinePageViewModel).GetRoutinesActivities();
+            await (BindingContext as RoutinePageViewModel).GetRoutinesActivities();
             pageStarted = true;
         }
     }

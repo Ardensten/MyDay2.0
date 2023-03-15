@@ -14,9 +14,10 @@ public partial class Notes : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
         if (!pageStarted)
         {
-            Task t = (BindingContext as NotesViewModel).GetUsersNotes();
+            await (BindingContext as NotesViewModel).GetUsersNotes();
             pageStarted = true;
         }
     }

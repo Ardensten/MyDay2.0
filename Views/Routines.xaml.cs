@@ -18,7 +18,7 @@ public partial class Routines : ContentPage
         base.OnAppearing();
         if (!pageStarted)
         {
-            Task t = (BindingContext as RoutinesViewModel).GetUsersRoutines();
+            await (BindingContext as RoutinesViewModel).GetUsersRoutines();
             pageStarted = true;
         }
     }

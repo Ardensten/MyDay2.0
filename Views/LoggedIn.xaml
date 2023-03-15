@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MyDay2._0.ViewModels"
+             x:DataType="viewmodel:LoggedInViewModel"
+             x:Class="MyDay2._0.Views.LoggedIn"
+             Title="LoggedIn">
+    <ContentPage.Resources>
+        <Style x:Key="scrollViewStyle"
+               TargetType="ScrollView">
+            <Setter Property="BackgroundColor" Value="#0C2240" />
+        </Style>
+
+        <Style x:Key="labelStyle"
+               TargetType="Label">
+            <Setter Property="FontFamily" Value="Roboto" />
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="WidthRequest" Value="300" />
+        </Style>
+
+        <Style x:Key="buttonStyle"
+               TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#0C2240" />
+            <Setter Property="TextColor" Value="#70C4C0" />
+            <Setter Property="FontFamily" Value="Roboto Slab" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="WidthRequest" Value="200"/>
+        </Style>
+
+    </ContentPage.Resources>
+    <ScrollView Style="{StaticResource scrollViewStyle}">
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="50*, 50*">
+                <Image Source="mindaglogo.png" HeightRequest="150" HorizontalOptions="Center" Grid.Column="0"/>
+            </Grid>
+            <Label Text="{Binding Message}" Style="{StaticResource labelStyle}"/>
+            <Image Source="{Binding WeatherIcon}" WidthRequest="50"/>
+            <Button Text="Mina rutiner" Style="{StaticResource buttonStyle}" Clicked="OnClickedRoutines"/>
+            <Button Text="Anteckningar" Style="{StaticResource buttonStyle}" Clicked="OnClickedNotes"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

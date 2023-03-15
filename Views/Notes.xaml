@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyDay2._0.Views.Notes"
+             Title="Notes">
+    <ContentPage.Resources>
+
+        <Style x:Key="verticalstacklayoutStyle"
+               TargetType="VerticalStackLayout">
+            <Setter Property="BackgroundColor" Value="#0C2240" />
+        </Style>
+
+        <Style x:Key="entryStyle"
+               TargetType="Entry">
+            <Setter Property="FontFamily" Value="Roboto" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+
+        <Style x:Key="labelStyle"
+               TargetType="Label">
+            <Setter Property="FontFamily" Value="Roboto" />
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="Padding" Value="10" />
+        </Style>
+
+        <Style x:Key="buttonStyle"
+               TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#0C2240" />
+            <Setter Property="TextColor" Value="#70C4C0" />
+            <Setter Property="FontFamily" Value="Roboto Slab" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="WidthRequest" Value="200"/>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <VerticalStackLayout
+        Style="{StaticResource verticalstacklayoutStyle}">
+        <Grid 
+                ColumnDefinitions="50*, 50*">
+            <Image
+                Source="mindaglogo.png"
+                HeightRequest="150"
+                HorizontalOptions="Center"
+                Grid.Column="0"/>
+        </Grid>
+        <Label 
+            Text="Anteckningar"
+            Style="{StaticResource labelStyle}"
+            TextColor="#798DA0"
+            FontSize="20"/>
+        <ListView
+            ItemsSource="{Binding Notes}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout
+                            Spacing="10">
+                            <Border
+                                Stroke="#70C4C0"
+                                StrokeThickness="0.1"
+                                MaximumWidthRequest="200"
+                                BackgroundColor="#0C2240">
+
+                                <Label
+                                Text="{Binding NoteEntry}"
+                                TextColor="#70C4C0"
+                                FontFamily="Roboto Slab"
+                                Style="{StaticResource labelStyle}"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label
+            Text="Lägg till ny anteckning: "
+            Style="{StaticResource labelStyle}"
+            TextColor="#798DA0"
+            FontSize="20"/>
+        <Entry
+            Placeholder="Anteckning"
+            Text="{Binding NoteEntry}"
+            Style="{StaticResource entryStyle}"/>
+        <Button
+            Text="OK"
+            Style="{StaticResource buttonStyle}"
+            Command="{Binding AddNoteCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MyDay2._0.ViewModels"
+             x:DataType="viewmodel:MainPageViewModel"
+             x:Class="MyDay2._0.MainPage">
+    <ContentPage.Resources>
+        <Style x:Key="scrollviewStyle"
+               TargetType="ScrollView">
+            <Setter Property="BackgroundColor" Value="#0C2240" />
+        </Style>
+
+        <Style x:Key="verticalstacklayoutStyle"
+               TargetType="VerticalStackLayout">
+
+        </Style>
+
+        <Style x:Key="entryStyle"
+               TargetType="Entry">
+            <Setter Property="WidthRequest" Value="200"/>
+            <Setter Property="FontFamily" Value="Roboto" />
+        </Style>
+
+        <Style x:Key="labelStyle"
+               TargetType="Label">
+            <Setter Property="FontFamily" Value="Roboto" />
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="Padding" Value="10" />
+        </Style>
+
+        <Style x:Key="buttonStyle"
+               TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#0C2240" />
+            <Setter Property="TextColor" Value="#70C4C0" />
+            <Setter Property="FontFamily" Value="Roboto Slab" />
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="WidthRequest" Value="200"/>
+        </Style>
+
+    </ContentPage.Resources>
+
+
+    <ScrollView
+        Style="{StaticResource scrollviewStyle}">
+        <VerticalStackLayout >
+
+            <Image
+                Source="mindaglogo.png"
+                WidthRequest="200"/>
+            <Entry
+                x:Name="name"
+                Placeholder="Användarnamn"
+                Style="{StaticResource entryStyle}"/>
+
+            <Entry
+                x:Name="password"
+                IsPassword="True"
+                Placeholder="Lösenord"
+                Style="{StaticResource entryStyle}"/>
+
+            <Button
+                Text="Logga in"
+                BindingContext="{x:Reference name, password}"
+                Clicked="ConfirmLogIn" 
+                Style="{StaticResource buttonStyle}"/>
+
+            <Button
+                Text="Registrera ny användare"
+                Clicked="OnClickedSignUp"
+                Style="{StaticResource buttonStyle}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

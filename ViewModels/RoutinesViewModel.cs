@@ -2,18 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using MongoDB.Driver;
 using MyDay2._0.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyDay2._0.ViewModels
 {
     internal partial class RoutinesViewModel : ObservableObject
     {
-
         [ObservableProperty]
         ObservableCollection<Routine> routines;
 
@@ -26,14 +20,9 @@ namespace MyDay2._0.ViewModels
         [ObservableProperty]
         TimeSpan time;
 
-         
-
- 
-
         public RoutinesViewModel()
         {
             Routines = new ObservableCollection<Routine>();
-
         }
 
         [RelayCommand]
@@ -51,9 +40,18 @@ namespace MyDay2._0.ViewModels
             Routines.Add(routine);
         }
 
+        [RelayCommand]
+        public async void RemoveRoutine(object r)
+        {
+            var routine = (Routine)r;
+            await GetRoutines().DeleteOneAsync(x => x.Id == routine.Id);
+            Routines.Remove(routine);
+        }
+
 
         public async Task GetUsersRoutines()
         {
+
             List<Routine> routinesFromDb = await GetRoutines().AsQueryable().ToListAsync();
             foreach (var routine in routinesFromDb.Where(x => x.UserId == Singleton.GetInstance().loggedInId)) 
             { 

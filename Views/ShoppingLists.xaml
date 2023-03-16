@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyDay2._0.Views.Routines"
+             x:Class="MyDay2._0.Views.ShoppingLists"
              xmlns:viewmodel="clr-namespace:MyDay2._0.ViewModels"
-             x:DataType="viewmodel:RoutinesViewModel"
-             Title="Routines">
+             x:DataType="viewmodel:ShoppingListsViewModel"
+             Title="Inköpslistor">
 
     <ContentPage.Resources>
         <Style x:Key="verticalstacklayoutStyle" TargetType="VerticalStackLayout">
@@ -39,13 +39,14 @@
                    Grid.Column="0"/>
         </Grid>
 
-        <Label Text="Dina rutiner"
+        <Label Text="Dina inköpslistor"
                Style="{StaticResource labelStyle}"
                TextColor="#798DA0"
                FontSize="20"/>
 
-        <ListView ItemsSource="{Binding Routines}"
-                  ItemSelected="OnListViewRoutineSelected">
+
+        <ListView ItemsSource="{Binding ShoppingLists}"
+                  ItemSelected="OnListViewShoppingListSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -53,7 +54,7 @@
                             <Button Grid.Column="0" 
                                     Text="✖" 
                                     TextColor="#70C4C0"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RoutinesViewModel}}, Path=RemoveRoutineCommand}" CommandParameter="{Binding .}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ShoppingListsViewModel}}, Path=RemoveCommand}" CommandParameter="{Binding .}"
                                     Style="{StaticResource buttonStyle}"/>
 
                             <Border Stroke="#70C4C0"
@@ -72,21 +73,18 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Label Text="Lägg till ny rutin: "
+        <Label Text="Lägg till ny inköpslista: "
                TextColor="#798DA0"
                FontSize="20"
                Style="{StaticResource labelStyle}"/>
 
-        <Entry Placeholder="Ange namn på rutinen"
+        <Entry Placeholder="Ange namn på inköpslistan"
                Text="{Binding Name}"
                Style="{StaticResource entryStyle}"/>
 
-        <TimePicker Time="{Binding Time}"
-                    HorizontalOptions="Center"/>
-
         <Button Text="OK"
                 Style="{StaticResource buttonStyle}"
-                Command="{Binding AddRoutineCommand}"/>
+                Command="{Binding AddShoppingListCommand}"/>
 
     </VerticalStackLayout>
 </ContentPage>

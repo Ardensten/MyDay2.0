@@ -5,6 +5,7 @@ using MyDay2._0.ViewModels;
 
 namespace MyDay2._0.Views;
 
+[XamlCompilation(XamlCompilationOptions.Skip)]
 public partial class RoutinePage : ContentPage
 {
     public RoutinePage()
@@ -22,10 +23,5 @@ public partial class RoutinePage : ContentPage
             await (BindingContext as RoutinePageViewModel).GetRoutinesActivities();
             pageStarted = true;
         }
-    }
-
-    private void ActivityTapped(object sender, ItemTappedEventArgs e)
-    {
-        var selectedActivity = sender as Activity; 
     }
 }

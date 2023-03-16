@@ -3,22 +3,21 @@ using MyDay2._0.ViewModels;
 namespace MyDay2._0.Views;
 
 [XamlCompilation(XamlCompilationOptions.Skip)]
-public partial class Notes : ContentPage
+public partial class ShoppingListPage : ContentPage
 {
-	public Notes()
+	public ShoppingListPage()
 	{
 		InitializeComponent();
-		BindingContext = new ViewModels.NotesViewModel();
-	}
+        BindingContext = new ViewModels.ShoppingListPageViewModel();
+    }
 
     bool pageStarted = false;
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-
         if (!pageStarted)
         {
-            await (BindingContext as NotesViewModel).GetUsersNotes();
+            await (BindingContext as ShoppingListPageViewModel).GetShoppingListsItems();
             pageStarted = true;
         }
     }

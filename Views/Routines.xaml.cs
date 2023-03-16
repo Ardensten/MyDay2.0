@@ -1,10 +1,9 @@
-using MongoDB.Driver;
 using MyDay2._0.Models;
 using MyDay2._0.ViewModels;
-using System.Xml.Linq;
 
 namespace MyDay2._0.Views;
 
+[XamlCompilation(XamlCompilationOptions.Skip)]
 public partial class Routines : ContentPage
 {
     public Routines()
@@ -12,6 +11,7 @@ public partial class Routines : ContentPage
         InitializeComponent();
         BindingContext = new ViewModels.RoutinesViewModel();
     }
+
     bool pageStarted = false;
     protected override async void OnAppearing()
     {

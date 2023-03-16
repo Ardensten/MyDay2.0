@@ -28,40 +28,40 @@ namespace MyDay2._0.ViewModels
 
         public LoggedInViewModel()
         {
-
             Name = Singleton.GetInstance().loggedInName;
             Message = GreetingStringBuilder();
-
         }
 
         public string GreetingStringBuilder()
         {
-
             var culture = new System.Globalization.CultureInfo("sv-SE");
             var day = culture.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
             int hour = Convert.ToInt32(DateTime.Now.Hour);
             string greeting;
 
-            if (hour < 10)
-            { greeting = "God morgon"; }
-            else if (hour > 17)
-            { greeting = "God kväll"; }
-            else if (hour > 12)
-            { greeting = "God eftermiddag"; }
-            else if (hour >= 10)
-            { greeting = "God förmiddag"; }
-            else
-            { greeting = "Välkommen"; }
+            switch (hour)
+            {
+                case int n when n < 10:
+                    greeting = "God morgon";
+                    break;
+                case int n when n > 17:
+                    greeting = "God kväll";
+                    break;
+                case int n when n > 12:
+                    greeting = "God eftermiddag";
+                    break;
+                case int n when n >= 10:
+                    greeting = "God förmiddag";
+                    break;
+                default:
+                    greeting = "Välkommen";
+                    break;
+            }
 
             GetWeather();
-
-            Message = greeting + " " + Name + "! Idag är det " + day + ". Det är " + Temp + " grader ute, känns som " + FeelsLikeTemp + " grader och är " + WeatherDescription + ".";
-
+            Message = $"{greeting} {Name}! Idag är det {day}. Det är {Temp} grader ute, känns som {FeelsLikeTemp} grader och är {WeatherDescription}.";
             return Message;
         }
-
-
-
         void GetWeather()
         {
             string APIKey = "d880f634a9c683c787a8ac74425fb095";
@@ -82,6 +82,5 @@ namespace MyDay2._0.ViewModels
                 }
             }
         }
-
     }
 }

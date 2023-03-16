@@ -44,6 +44,15 @@ namespace MyDay2._0.ViewModels
             Notes.Add(note);
         }
 
+        [RelayCommand]
+        public async void RemoveNote(object n)
+        {
+            var note = (Note)n;
+            await GetNotes().DeleteOneAsync(x => x.Id == note.Id);
+            Notes.Remove(note);
+        }
+
+
         public async Task GetUsersNotes()
         {
             List<Note> notesFromDb = await GetNotes().AsQueryable().ToListAsync();

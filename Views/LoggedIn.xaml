@@ -32,12 +32,28 @@
     <ScrollView Style="{StaticResource scrollViewStyle}">
         <VerticalStackLayout>
             <Grid ColumnDefinitions="50*, 50*">
-                <Image Source="mindaglogo.png" HeightRequest="150" HorizontalOptions="Center" Grid.Column="0"/>
+                <Image Source="mindaglogo.png" 
+                       HeightRequest="150" 
+                       HorizontalOptions="Center" 
+                       Grid.Column="0"/>
             </Grid>
-            <Label Text="{Binding Message}" Style="{StaticResource labelStyle}"/>
-            <Image Source="{Binding WeatherIcon}" WidthRequest="50"/>
-            <Button Text="Mina rutiner" Style="{StaticResource buttonStyle}" Clicked="OnClickedRoutines"/>
-            <Button Text="Anteckningar" Style="{StaticResource buttonStyle}" Clicked="OnClickedNotes"/>
+            
+            <Label Text="{Binding Message}" 
+                   Style="{StaticResource labelStyle}"/>
+            
+            <Image Source="{Binding WeatherIcon}" 
+                   WidthRequest="50"/>
+            
+            <Button Text="Mina rutiner" 
+                    Style="{StaticResource buttonStyle}" 
+                    Clicked="OnClickedRoutines"/>
+            
+            <Button Text="Anteckningar" 
+                    Style="{StaticResource buttonStyle}" 
+                    Clicked="OnClickedNotes"/>
+            <Button Text="Inköpslistor"
+                    Style="{StaticResource buttonStyle}"
+                    Clicked="OnClickedShoppingLists"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

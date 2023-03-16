@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyDay2._0.Views.Notes"
+             xmlns:viewmodel="clr-namespace:MyDay2._0.ViewModels"
+             x:DataType="viewmodel:NotesViewModel"
              Title="Notes">
     <ContentPage.Resources>
         <Style x:Key="verticalstacklayoutStyle" TargetType="VerticalStackLayout">
@@ -25,28 +27,54 @@
         </Style>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <VerticalStackLayout Style="{StaticResource verticalstacklayoutStyle}">
-            <Grid ColumnDefinitions="50*, 50*">
-                <Image Source="mindaglogo.png" HeightRequest="150" HorizontalOptions="Center" Grid.Column="0"/>
-            </Grid>
-            <Label Text="Anteckningar" Style="{StaticResource labelStyle}" TextColor="#798DA0" FontSize="20"/>
-            <ListView ItemsSource="{Binding Notes}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <VerticalStackLayout Spacing="10">
-                                <Border Stroke="#70C4C0" StrokeThickness="0.1" MaximumWidthRequest="200" BackgroundColor="#0C2240">
-                                    <Label Text="{Binding NoteEntry}" TextColor="#70C4C0" FontFamily="Roboto Slab" Style="{StaticResource labelStyle}"/>
-                                </Border>
-                            </VerticalStackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Label Text="Lägg till ny anteckning: " Style="{StaticResource labelStyle}" TextColor="#798DA0" FontSize="20"/>
-            <Entry Placeholder="Anteckning" Text="{Binding NoteEntry}" Style="{StaticResource entryStyle}"/>
-            <Button Text="OK" Style="{StaticResource buttonStyle}" Command="{Binding AddNoteCommand}"/>
-        </VerticalStackLayout>
-    </ContentPage.Content>
+    <VerticalStackLayout Style="{StaticResource verticalstacklayoutStyle}">
+        <Grid ColumnDefinitions="50*, 50*">
+            <Image Source="mindaglogo.png" HeightRequest="150" HorizontalOptions="Center" Grid.Column="0"/>
+        </Grid>
+
+        <Label Text="Anteckningar" Style="{StaticResource labelStyle}" TextColor="#798DA0" FontSize="20"/>
+
+        <ListView ItemsSource="{Binding Notes}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnDefinitions="10*, 90*">
+                            <Button Grid.Column="0" 
+                                    Text="✖" 
+                                    TextColor="#70C4C0"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:NotesViewModel}}, Path=RemoveNoteCommand}" CommandParameter="{Binding .}"
+                                    Style="{StaticResource buttonStyle}"/>
+
+                            <Border Stroke="#70C4C0" 
+                                    Grid.Column="1"
+                                        StrokeThickness="0.1" 
+                                        MaximumWidthRequest="200" 
+                                        BackgroundColor="#0C2240">
+
+                                <Label Text="{Binding NoteEntry}" 
+                                           TextColor="#70C4C0" 
+                                           FontFamily="Roboto Slab" 
+                                           Style="{StaticResource labelStyle}"/>
+                            </Border>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label 
+                Text="Lägg till ny anteckning: " 
+                Style="{StaticResource labelStyle}" 
+                TextColor="#798DA0" 
+                FontSize="20"/>
+
+        <Entry Placeholder="Anteckning" 
+                   Text="{Binding NoteEntry}" 
+                   Style="{StaticResource entryStyle}"/>
+
+        <Button Text="OK" 
+                    Style="{StaticResource buttonStyle}" 
+                    Command="{Binding AddNoteCommand}"/>
+
+    </VerticalStackLayout>
 </ContentPage>

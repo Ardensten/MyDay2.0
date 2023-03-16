@@ -22,4 +22,9 @@ public partial class LoggedIn : ContentPage
     {
         await Navigation.PushAsync(new Notes());
     }
+
+    private async void OnClickedShoppingLists(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ShoppingLists());
+    }
 }

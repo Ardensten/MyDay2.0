@@ -23,8 +23,6 @@ namespace MyDay2._0.ViewModels
         [ObservableProperty]
         string name;
         [ObservableProperty]
-        Guid routineId;
-        [ObservableProperty]
         string title;
  
 
@@ -32,7 +30,6 @@ namespace MyDay2._0.ViewModels
         {
             Activities = new ObservableCollection<Models.Activity>();
             Title = TitleStringBuilder();
-
         }
 
         public string TitleStringBuilder()
@@ -55,6 +52,14 @@ namespace MyDay2._0.ViewModels
 
             await GetActivities().InsertOneAsync(activity);
             Activities.Add(activity);
+        }
+
+        [RelayCommand]
+        public async void RemoveActivity(object a)
+        {
+            var activity = (Activity)a;
+            await GetActivities().DeleteOneAsync(x => x.Id == activity.Id);
+            Activities.Remove(activity);
         }
 
         public async Task GetRoutinesActivities()

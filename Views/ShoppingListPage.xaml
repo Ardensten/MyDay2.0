@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          x:Class="MyDay2._0.Views.RoutinePage"
+          x:Class="MyDay2._0.Views.ShoppingListPage"
           xmlns:viewmodel="clr-namespace:MyDay2._0.ViewModels"
-          x:DataType="viewmodel:RoutinePageViewModel"
-          Title="RoutinePage">
+          x:DataType="viewmodel:ShoppingListPageViewModel"
+          Title="Inköpslista">
     <ContentPage.Resources>
         <Style x:Key="verticalstacklayoutStyle"
             TargetType="VerticalStackLayout">
@@ -30,7 +30,7 @@
             <Setter Property="WidthRequest" Value="200" />
         </Style>
     </ContentPage.Resources>
-    
+
     <VerticalStackLayout Style="{StaticResource verticalstacklayoutStyle}">
         <Grid ColumnDefinitions="50*, 50*">
             <Image Source="mindaglogo.png"
@@ -38,55 +38,53 @@
                 HorizontalOptions="Center"
                 Grid.Column="0" />
         </Grid>
-        
-        <Label Text="{Binding Title}"
+
+        <Label Text="{Binding ShoppingListName}"
             Style="{StaticResource labelStyle}"
             TextColor="#798DA0"
             FontSize="20" />
-        
-        <ListView ItemsSource="{Binding Activities}">
+
+        <ListView ItemsSource="{Binding ShoppingListItems}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid ColumnDefinitions="10*, 80*, 10*">
+                        <Grid ColumnDefinitions="10*, 80*">
                             <Button Grid.Column="0" 
                                     Text="✖" 
                                     TextColor="#70C4C0"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:RoutinePageViewModel}}, Path=RemoveActivityCommand}" CommandParameter="{Binding .}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ShoppingListPageViewModel}}, Path=RemoveItemCommand}" CommandParameter="{Binding .}"
                                     Style="{StaticResource buttonStyle}"/>
-                            
+
                             <Border Grid.Column="1"
                                  Stroke="#70C4C0"
                                  StrokeThickness="0.1"
                                  BackgroundColor="#0C2240"
                                  MaximumWidthRequest="200">
-                                
+
                                 <Label Text="{Binding Name}"
                                     TextColor="#70C4C0"
                                     FontFamily="Roboto Slab"
                                     Style="{StaticResource labelStyle}"/>
                             </Border>
-                            <CheckBox BackgroundColor="#0C2240"
-                                   Color="#70C4C0"
-                                   Grid.Column="2" />
+
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <Label Text="Lägg till ny aktivitet: "
+
+        <Label Text="Lägg till nytt föremål: "
             Style="{StaticResource labelStyle}"
             TextColor="#798DA0"
             FontSize="20" />
-        
-        <Entry Placeholder="Ange namn på aktiviteten"
+
+        <Entry Placeholder="Ange namn på föremålet"
             Text="{Binding Name}"
             Style="{StaticResource entryStyle}" />
-        
+
         <Button Text="OK"
              Style="{StaticResource buttonStyle}"
-             Command="{Binding AddActivityCommand}" />
-        
+             Command="{Binding AddItemCommand}" />
+
     </VerticalStackLayout>
 </ContentPage>

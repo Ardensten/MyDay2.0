@@ -45,7 +45,6 @@ namespace MyDay2._0.ViewModels
             ShoppingLists.Remove(shoppingList);
         }
 
-
         public async Task GetUsersShoppingLists()
         {
 
